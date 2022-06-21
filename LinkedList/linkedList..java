@@ -57,6 +57,54 @@ public class linkedList{
         return dummy.next;
     }
 
+    public ListNode midNode(ListNode head)
+    {
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        return slow;
+    }
+
+    public void reorderList(ListNode head) {
+
+        if(head==null || head.next==null)
+        {
+            return;
+        }
+        ListNode mid=midNode(head);
+        ListNode nHead=mid.next;
+        nHead=reverseList(nHead);
+        mid.next=null;
+
+        ListNode curr1=head;
+        ListNode curr2=nHead;
+
+        while(curr1!=null && curr2!=null)
+        {
+            ListNode forw1=curr1.next;
+            ListNode forw2=curr2.next;
+
+            curr1.next=curr2;
+            curr2.next=forw1;
+
+            curr1=forw1;
+            curr2=forw2;
+        }
+
+
+        
+    }
     public void main(String[] args){
 
     }
