@@ -102,6 +102,46 @@ public class linkedList{
             curr2=forw2;
         }
 
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        
+        if(head==null || n<0)
+        {
+            return null;
+        }
+
+        ListNode slow=head;
+        ListNode fast=head;
+
+        while(n-->0)
+        {
+            fast=fast.next;
+        }
+
+        if(fast==null)
+        {
+            ListNode rNode=head;
+            ListNode forw=rNode.next;
+            head=forw;
+            rNode.next=null;
+
+            return head;
+        }
+
+        while(fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+
+        ListNode rNode=slow.next;
+        ListNode forw=rNode.next;
+
+        slow.next=forw;
+        rNode.next=null;
+        
+        return head;
+    }
+
 
         
     }
